@@ -105,18 +105,23 @@ $(document).ready(function() {
 		// allTheMarkers[0].setMap(null);
 		// allTheMarkers.shift();
 		//allTheMarkers = [marker1, marker2, marker3]
-	})
+	});
 
 	var count = 1;
 	$("#ADD-DAY").on('click', function () {
 		count += 1;
-		var newDay = "<button class='btn btn-circle day-btn' style='margin-right: 4px'>" + count + "</button>"
-		$("#existingDays").append(newDay)
+		var existingDays = $("#existingDays").children().length;
 
 		//append to this
 		//change text
-	})
-})
+		$.post('/api/days', {number: existingDays}, function (data) { console.log("Y0! \n", data); })
+			.fail(function (err) { console.log("Bro...", err); });
+
+
+		var newDay = "<button class='btn btn-circle day-btn' style='margin-right: 4px'>" + count + "</button>";
+		$("#existingDays").append(newDay);
+	});
+});
 
 
 

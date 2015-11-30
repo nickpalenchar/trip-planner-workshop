@@ -18,7 +18,9 @@ router.get('/', function(req, res) {
         all_restaurants: restaurants,
         all_activities: activities
       });
-    })
+    });
 });
+
+router.use('/api/days', require('./api/days'));
 
 module.exports = router;
